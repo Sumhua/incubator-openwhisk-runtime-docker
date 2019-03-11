@@ -235,9 +235,6 @@ def init():
 
     try:
         status = runner.init(value)
-        # exec global define only at code init(once) instead of at code run
-        if runner.verify():
-          status = runner.globalDefineInit()
     except Exception as e:
         status = False
 
