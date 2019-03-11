@@ -52,7 +52,7 @@ class ActionRunner:
         self.source = source if source else defaultBinary
         self.binary = binary if binary else defaultBinary
         self.zipdest = zipdest if zipdest else os.path.dirname(self.source)
-        os.chdir(os.path.dirname(self.source))
+        #os.chdir(os.path.dirname(self.source))
 
     def preinit(self):
         return
@@ -235,6 +235,9 @@ def init():
 
     try:
         status = runner.init(value)
+        # exec global define only at code init(once) instead of at code run
+        if runner.verify():
+          status = runner.globalDefineInit()
     except Exception as e:
         status = False
 
